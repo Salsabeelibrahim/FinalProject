@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfume Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <header>
+      <h1><i class="fas fa-leaf"></i> LUXE FRAGRANCE</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                    <li>
+                        <a href="cart.html" class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+        
+    </header>
+
+    <section id="welcome">
+        <h2>Welcome To Luxe Fragrance</h2>
+        <p>Your destination for luxurious and captivating scents. Discover your perfect fragrance today!</p>
+        <button onclick="scrollToPerfumes()">Explore Now</button>
+      </section>
+
+      <main1>
+        <section id="featured-perfumes">
+          <h2>Featured Perfumes</h2>
+          <div class="perfume-grid">
+            <!-- Perfume Cards -->
+            <div class="perfume-card">
+              <img src="1.jpg" alt="Chanel No. 5">
+              <div class="perfume-info">
+                <h3>Chanel No. 5</h3>
+                <p>An iconic floral aldehyde fragrance.</p>
+                <p class="price">$150.00</p>
+                <button onclick="addToCart('Chanel No. 5', '1.jpg', 150.00)">Add to Cart</button>
+              </div>
+            </div>
+            <div class="perfume-card">
+              <img src="2.jpg" alt="Dior Sauvage">
+              <div class="perfume-info">
+                <h3>Dior Sauvage</h3>
+                <p>Fresh, spicy, and woody notes for men.</p>
+                <p class="price">$120.00</p>
+                <button onclick="addToCart('Dior Sauvage', '2.jpg', 120.00)">Add to Cart</button>
+              </div>
+            </div>
+            <div class="perfume-card">
+              <img src="3.jpg" alt="YSL Black Opium">
+              <div class="perfume-info">
+                <h3>YSL Black Opium</h3>
+                <p>Glamorous coffee and vanilla scent.</p>
+                <p class="price">$130.00</p>
+                <button onclick="addToCart('YSL Black Opium', '3.jpg', 130.00)">Add to Cart</button>
+              </div>
+            </div>
+            <div class="perfume-card">
+              <img src="4.jpg" alt="Tom Ford Oud Wood">
+              <div class="perfume-info">
+                <h3>Tom Ford Oud Wood</h3>
+                <p>Exotic and woody oud fragrance.</p>
+                <p class="price">$220.00</p>
+                <button onclick="addToCart('Tom Ford Oud Wood', '4.jpg', 180.00)">Add to Cart</button>
+              </div>
+            </div>
+            <div class="perfume-card">
+              <img src="5.jpg" alt="Gucci Bloom">
+              <div class="perfume-info">
+                <h3>Gucci Bloom</h3>
+                <p>Rich white floral bouquet for women.</p>
+                <p class="price">$110.00</p>
+                <button onclick="addToCart('Gucci Bloom', '5.jpg', 110.00)">Add to Cart</button>
+              </div>
+            </div>
+            <div class="perfume-card">
+              <img src="6.jpg" alt="Creed Aventus">
+              <div class="perfume-info">
+                <h3>Creed Aventus</h3>
+                <p>Bold, fruity, and woody masculine scent.</p>
+                <p class="price">$300.00</p>
+                <button onclick="addToCart('Creed Aventus', '6.jpg', 250.00)">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main1>
+
+    <footer>
+        <p> 2024 Luxe Fragrance. All rights reserved. Follow us on social media: Facebook | Instagram | Twitter</p>
+    </footer>
+
+    <script>
+      // وظيفة لإضافة المنتج إلى السلة
+      function addToCart(name, image, price) {
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+          let product = { name: name, image: image, price: price, quantity: 1 };
+  
+          // التحقق إذا كان المنتج موجودًا بالفعل في السلة
+          let existingProductIndex = cart.findIndex(item => item.name === name);
+          if (existingProductIndex !== -1) {
+              cart[existingProductIndex].quantity += 1; // زيادة الكمية
+          } else {
+              cart.push(product);
+          }
+  
+          // حفظ السلة في localStorage
+          localStorage.setItem('cart', JSON.stringify(cart));
+          
+          // تحديث عداد السلة
+          updateCartCount();
+      }
+  
+      // تحديث عداد السلة في الهيدر
+      function updateCartCount() {
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+          document.getElementById('cart-count').innerText = cart.length;
+      }
+  
+      // تحديث العداد عند تحميل الصفحة
+      document.addEventListener('DOMContentLoaded', updateCartCount);
+  </script>
+  
+</body>
+</html>
